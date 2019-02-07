@@ -1,7 +1,13 @@
+#include <stdio.h>
+
+
 /* 
  * CS:APP Data Lab 
  * 
  * <Please put your name and userid here>
+ * Ben Murdoch : Murdo25
+ * Mitchell Mortensen : Mitch151
+ *
  * 
  * bits.c - Source file with your solutions to the Lab.
  *          This is the file you will hand in to your instructor.
@@ -165,6 +171,7 @@ NOTES:
    2015-05-15).  */
 /* We do not support C11 <threads.h>.  */
 /* Rating 1 -- 2 points each */
+
 /* 
  * evenBits - return word with all even-numbered bits set to 1
  *   Legal ops: ! ~ & ^ | + << >>
@@ -172,8 +179,17 @@ NOTES:
  *   Rating: 1
  */
 int evenBits(void) {
-  return 2;
+  int i = 0x55;
+  i = i << 8;
+  i = i + 0x55;
+
+  int j = i << 16;
+  j = j + i;
+
+  return j;
 }
+
+
 /* 
  * minusOne - return a value of -1 
  *   Legal ops: ! ~ & ^ | + << >>
@@ -181,8 +197,11 @@ int evenBits(void) {
  *   Rating: 1
  */
 int minusOne(void) {
-  return 2;
+  int x = 0x0;
+  x = ~x;
+  return x;
 }
+
 /* 
  * upperBits - pads n upper bits with 1's
  *  You may assume 0 <= n <= 32
@@ -192,8 +211,21 @@ int minusOne(void) {
  *  Rating: 1
  */
 int upperBits(int n) {
-  return 2;
+  int i = 0x0;
+  i = ~i;
+
+
+  int p = 31 - n
+  i = i << p;
+  i = i << 1;
+ 
+  i =  
+
+
+  return i;
 }
+
+
 /* Rating 2 -- 3 points each */
 /* 
  * getByte - Extract byte n from word x
