@@ -213,15 +213,11 @@ int minusOne(void) {
 int upperBits(int n) {
   int i = 0x0;
   i = ~i;
-
-
-  int p = 31 - n
-  i = i << p;
-  i = i << 1;
- 
-  i =  
-
-
+  int median = n + (~16 + 1);
+  i = i << 16;
+  i = i << median;
+  i = i >> (~median + 1);
+  printf("input: %x\noutput: %x\n", n, i); 
   return i;
 }
 
