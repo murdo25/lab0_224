@@ -214,10 +214,14 @@ int upperBits(int n) {
   int i = 0x0;
   i = ~i;
   int median = n + (~16 + 1);
+  printf("median: %d\n", median); 
+  printf("input: %x\nvalue: %x\n", n, i); 
   i = i << 16;
+  printf("slid left by 16 value: %x\n", i); 
   i = i << median;
+  printf("slid left by median. new value: %x\n", i); 
   i = i >> (~median + 1);
-  printf("input: %x\noutput: %x\n", n, i); 
+  printf(" slid right by negative median: %d, new value: %x\n", (~median + 1), i); 
   return i;
 }
 
