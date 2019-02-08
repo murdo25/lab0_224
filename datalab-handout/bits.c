@@ -214,14 +214,9 @@ int upperBits(int n) {
   int i = 0x0;
   i = ~i;
   int median = n + (~16 + 1);
-  printf("median: %d\n", median); 
-  printf("input: %x\nvalue: %x\n", n, i); 
   i = i << 16;
-  printf("slid left by 16 value: %x\n", i); 
   i = i << median;
-  printf("slid left by median. new value: %x\n", i); 
   i = i >> (~median + 1);
-  printf(" slid right by negative median: %d, new value: %x\n", (~median + 1), i); 
   return i;
 }
 
@@ -236,7 +231,9 @@ int upperBits(int n) {
  *   Rating: 2
  */
 int getByte(int x, int n) {
-  return 2;
+  int mask = 0xFF;
+  int byteToPull = mask << (n << 8); 
+  return (x & byteToPull) >> (n << 8);
 }
 /* 
  * isNotEqual - return 0 if x == y, and 1 otherwise 
@@ -246,7 +243,7 @@ int getByte(int x, int n) {
  *   Rating: 2
  */
 int isNotEqual(int x, int y) {
-  return 2;
+  return !!(x^y);
 }
 /* Rating 3 -- 2 points each */
 /* 
