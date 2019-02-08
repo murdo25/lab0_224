@@ -212,11 +212,8 @@ int minusOne(void) {
  */
 int upperBits(int n) {
   int i = 0x0;
-  i = ~i;
-  int median = n + (~16 + 1);
-  i = i << 16;
-  i = i << median;
-  i = i >> (~median + 1);
+  i = ~i << 31;
+  i = i >> (n + ~0);
   return i;
 }
 
@@ -286,7 +283,9 @@ int absVal(int x) {
   int f = 0x80;
   f = f << 24;
   int neg = x >> 31;
-  return 2;
+  int toReturn = neg & (~x + 1);
+  toReturn = toReturn | (x & ~neg);
+  return toReturn;
 }
 /* Float Rating 2 -- 3 points each */
 /* 
