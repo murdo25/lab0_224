@@ -254,11 +254,8 @@ int isNotEqual(int x, int y) {
  */
 int conditional(int x, int y, int z) {
   int i = !!x;
-  i = i + (i << 1);
-  i = i + (i << 2);
-  i = i + (i << 4);
-  i = i + (i << 8);
-  i = i + (i << 16);
+  i = i << 31;
+  i = i >> 31;
   int a = i & y;
   a = a | (z & ~i); 
   return a;
