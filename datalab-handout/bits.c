@@ -212,8 +212,18 @@ int minusOne(void) {
  */
 int upperBits(int n) {
   int i = 0x0;
-  i = ~i << 31;
-  i = i >> (n + ~0);
+  i = ~i; 
+
+  int diff = 33+~n; 
+
+  int same = 32 & diff;
+  same = (same << 26) >> 31; 
+
+  int a = ~same & (i << diff);
+
+  return a;
+
+
   return i;
 }
 
