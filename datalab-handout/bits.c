@@ -232,8 +232,7 @@ int upperBits(int n) {
  */
 int getByte(int x, int n) {
   int mask = 0xFF;
-  int byteToPull = mask << (n << 8); 
-  return (x & byteToPull) >> (n << 8);
+  return (((mask << (n << 3)) & x) >> (n << 3)) & mask; 
 }
 /* 
  * isNotEqual - return 0 if x == y, and 1 otherwise 
@@ -254,7 +253,15 @@ int isNotEqual(int x, int y) {
  *   Rating: 3
  */
 int conditional(int x, int y, int z) {
-  return 2;
+  int i = !!x;
+  i = i + (i << 1);
+  i = i + (i << 2);
+  i = i + (i << 4);
+  i = i + (i << 8);
+  i = i + (i << 16);
+  int a = i & y;
+  a = a | (z & ~i); 
+  return a;
 }
 /* 
  * isGreater - if x > y  then return 1, else return 0 
@@ -264,7 +271,10 @@ int conditional(int x, int y, int z) {
  *   Rating: 3
  */
 int isGreater(int x, int y) {
-  return 2;
+  int f = 0x80;
+  f = f << 24;
+  int c = x - y;
+  return !!(c & f);
 }
 /* Rating 4 -- 1 point each */
 /* 
@@ -276,6 +286,9 @@ int isGreater(int x, int y) {
  *   Rating: 4
  */
 int absVal(int x) {
+  int f = 0x80;
+  f = f << 24;
+  int neg = x >> 31;
   return 2;
 }
 /* Float Rating 2 -- 3 points each */
