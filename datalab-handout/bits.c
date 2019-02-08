@@ -265,10 +265,16 @@ int conditional(int x, int y, int z) {
  *   Rating: 3
  */
 int isGreater(int x, int y) {
-  int f = 0x80;
-  f = f << 24;
-  int c = x - y;
-  return !!(c & f);
+  int f = 0x01;
+  f = f << 31;
+  int xn = x >> 31;
+  int yn = y >> 31;
+  int d = (x + (~y + 1)) >> 31;
+  int c = xn ^ yn;
+  int a = c & yn;
+  a = a | (~d & (~c & yn)); 
+  a = a | (d & (~c & ~yn));
+  return !!a;
 }
 /* Rating 4 -- 1 point each */
 /* 
@@ -280,8 +286,6 @@ int isGreater(int x, int y) {
  *   Rating: 4
  */
 int absVal(int x) {
-  int f = 0x80;
-  f = f << 24;
   int neg = x >> 31;
   int toReturn = neg & (~x + 1);
   toReturn = toReturn | (x & ~neg);
