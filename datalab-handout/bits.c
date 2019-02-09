@@ -301,6 +301,7 @@ int absVal(int x) {
   toReturn = toReturn | (x & ~neg);
   return toReturn;
 }
+
 /* Float Rating 2 -- 3 points each */
 /* 
  * float_neg - Return bit-level equivalent of expression -f for
@@ -313,9 +314,24 @@ int absVal(int x) {
  *   Max ops: 10
  *   Rating: 2
  */
+//  32/4 =  8 
+
+//if the exponent bits are filled with ones and the fraction bits have any ones it is a NaN
 unsigned float_neg(unsigned uf) {
- return 2;
+   int check = 0xFF << 23;
+   int fraction = 0x7F << 16; //0x7FFFFF
+
+   if((check & uf) == check){
+        fraction = fraction & uf; //Stamp the fraction bits
+        if(fraction){    
+            return uf;
+        }
+   }
+
+   return uf ^ (8 << 28);
+
 }
+
 /* Float Rating 4 -- 1 point each */
 /* 
  * float_f2i - Return bit-level equivalent of expression (int) f
