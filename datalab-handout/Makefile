@@ -5,7 +5,7 @@ CC = gcc
 CFLAGS = -O -Wall -m32
 LIBS = -lm
 
-VERSION = 1
+VERSION = 2
 HANDINDIR = /users/groups/cs224ta/datalab
 
 all: btest fshow ishow
