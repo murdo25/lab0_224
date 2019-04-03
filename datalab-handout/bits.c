@@ -1,4 +1,3 @@
-#include <stdio.h>
 
 
 /* 
@@ -179,11 +178,12 @@ NOTES:
  *   Rating: 1
  */
 int evenBits(void) {
-  int i = 0x55;
+  int i, j;
+  i  = 0x55;
   i = i << 8;
   i = i + 0x55;
 
-  int j = i << 16;
+  j = i << 16;
   j = j + i;
 
   return j;
@@ -211,20 +211,18 @@ int minusOne(void) {
  *  Rating: 1
  */
 int upperBits(int n) {
-  int i = 0x0;
+  int i, diff, same, a;
+  i  = 0x0;
   i = ~i; 
 
-  int diff = 33+~n; 
+  diff = 33+~n; 
 
-  int same = 32 & diff;
+  same = 32 & diff;
   same = (same << 26) >> 31; 
 
-  int a = ~same & (i << diff);
+  a = ~same & (i << diff);
 
   return a;
-
-
-  return i;
 }
 
 
@@ -260,10 +258,11 @@ int isNotEqual(int x, int y) {
  *   Rating: 3
  */
 int conditional(int x, int y, int z) {
-  int i = !!x;
+  int i, a;
+  i = !!x;
   i = i << 31;
   i = i >> 31;
-  int a = i & y;
+  a = i & y;
   a = a | (z & ~i); 
   return a;
 }
@@ -275,13 +274,14 @@ int conditional(int x, int y, int z) {
  *   Rating: 3
  */
 int isGreater(int x, int y) {
-  int f = 0x01;
+  int f, cn, yn, d, c, a;
+  f = 0x01;
   f = f << 31;
-  int xn = x >> 31;
-  int yn = y >> 31;
-  int d = (x + (~y + 1)) >> 31;
-  int c = xn ^ yn;
-  int a = c & yn;
+  xn = x >> 31;
+  yn = y >> 31;
+  d = (x + (~y + 1)) >> 31;
+  c = xn ^ yn;
+  a = c & yn;
   a = a | (~d & (~c & yn)); 
   a = a | (d & (~c & ~yn));
   return !!a;
@@ -296,8 +296,9 @@ int isGreater(int x, int y) {
  *   Rating: 4
  */
 int absVal(int x) {
-  int neg = x >> 31;
-  int toReturn = neg & (~x + 1);
+  int neg, toReturn;
+  neg  = x >> 31;
+  toReturn = neg & (~x + 1);
   toReturn = toReturn | (x & ~neg);
   return toReturn;
 }
@@ -318,8 +319,9 @@ int absVal(int x) {
 
 //if the exponent bits are filled with ones and the fraction bits have any ones it is a NaN
 unsigned float_neg(unsigned uf) {
-   int check = 0xFF << 23;
-   int fraction = 0x7F << 16; //0x7FFFFF
+   int check, fraction;
+   check = 0xFF << 23;
+   fraction = 0x7F << 16; //0x7FFFFF
 
    if((check & uf) == check){
         fraction = fraction & uf; //Stamp the fraction bits
