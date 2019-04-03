@@ -274,7 +274,7 @@ int conditional(int x, int y, int z) {
  *   Rating: 3
  */
 int isGreater(int x, int y) {
-  int f, cn, yn, d, c, a;
+  int f, xn, yn, d, c, a;
   f = 0x01;
   f = f << 31;
   xn = x >> 31;
